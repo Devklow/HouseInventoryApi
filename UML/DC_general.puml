@@ -1,0 +1,48 @@
+@startuml
+
+class User {
+- username:string
+- pass:string
+}
+
+class Wall {
+- posX:float
+- posY:float
+- posX2:float
+- posY2:float
+- image:string
+}
+
+class UserTheme {
+- name:string
+- color:string
+}
+
+class StorageBox {
+- name:string
+- posX:float
+- posY:float
+- posX2:float
+- posY2:float
+- image:string
+}
+
+class Item {
+- name:string
+- floor:int
+- number:int
+}
+
+class House {
+- name:string
+- background:string
+}
+
+User "1..1" --* "0..n" UserTheme : themes
+User "1..1" --* "0..n" House : houses
+House "1..1" --* "0..n" StorageBox: storages
+House "1..1" --* "0..n" Wall: walls
+StorageBox "1..1" --* "0..n" Item: items
+Item "0..n" o-- "0..1" UserTheme: items
+
+@enduml
